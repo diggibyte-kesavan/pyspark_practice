@@ -54,5 +54,13 @@ rdd_sortbykey = rdd_reducebykey.map(lambda x: (x[1], x[0])).sortByKey()
 print(rdd_sortbykey.collect())
 
 # filter transformation
-rdd_filter = rdd_sortbykey.filter(lambda  x: 'an' in x[1])
+rdd_filter = rdd_sortbykey.filter(lambda x: 'an' in x[1])
 print(rdd_filter.collect())
+
+# actions
+
+print(read_txt_rdd.count())  # Returns the number of records in an RDD
+print(read_txt_rdd.first())  # Returns the first record.
+print(read_txt_rdd.max())  # Returns max record from txt file
+print(rdd_sortbykey.reduce(lambda a, b: (a[0] + b[0], a[1])))  # Reduces the records to single.
+print(rdd_sortbykey.take(1))  # Returns the record specified as an argument.
